@@ -1,12 +1,28 @@
-board=[[0,0,1,0,0,3,0,4,0],
-       [0,0,0,0,0,0,0,0,0],
-       [0,0,0,0,0,0,0,0,0],
-       [0,0,0,0,0,0,0,0,0],
-       [0,0,0,0,0,0,0,0,0],
-       [0,0,0,0,0,0,0,0,0],
-       [0,0,0,0,0,0,0,0,0],
-       [0,0,0,0,0,0,0,0,0],
-       [0,0,0,0,0,0,0,0,0]]
+import random
+
+def initialize_board():
+    # Create an empty 9x9 Sudoku board filled with 0s.
+    board = [[0 for _ in range(9)] for _ in range(9)]
+
+    # Define the number of filled cells in the initial puzzle.
+    num_filled_cells = random.randint(10, 30)  # Adjust as needed.
+
+    for _ in range(num_filled_cells):
+        while True:
+            # Randomly select a row and column.
+            row, col = random.randint(0, 8), random.randint(0, 8)
+            
+            # Check if the selected cell is empty (has a value of 0).
+            if board[row][col] == 0:
+                break  # Valid empty cell found.
+
+        # Randomly select a number (1 to 9) and fill the cell.
+        num = random.randint(1, 9)
+        board[row][col] = num
+
+    return board
+       
+board=intialize_board()
 
 def solve(bo):
     fnd=find(bo)
@@ -57,6 +73,6 @@ def find(bo):
     return None
 
 display(board)
-print("___________")
+print("______________________________________________")
 solve(board)
 display(board)
